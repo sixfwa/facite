@@ -26,3 +26,14 @@ class CreateAccoutForm(_forms.Form):
     confirmation_password = _forms.CharField(
         widget=_forms.PasswordInput(attrs={"placeholder": "Confirm Password"})
     )
+
+
+class LoginForm(_forms.Form):
+
+    username = _forms.CharField(
+        widget=_forms.TextInput(attrs={"placeholder": "Username"})
+    )
+
+    password = _forms.CharField(
+        widget=_forms.PasswordInput(attrs={"placeholder": "Password"})
+    )

@@ -43,6 +43,26 @@ def create_account(request):
     )
 
 
+def login(request):
+    if request.method == "POST":
+
+        username = request.POST["username"]
+        password = request.POST["password"]
+
+        user = _auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            _auth.login(request, user)
+            return _redirect("index")
+        else:
+            _messages.error(request, "Invalid Credentials")
+            return _redirect("login")
+
+    return _render(
+        request, "pages/authentication/login.html", {"form": _forms.LoginForm()}
+    )
+
+
 def logout(request):
     if request.method == "POST":
         _auth.logout(request)
