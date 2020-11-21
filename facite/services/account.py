@@ -13,3 +13,17 @@ def username_exists(username: str) -> bool:
 
 def email_exists(email: str) -> bool:
     return _User.objects.filter(email=email).exists()
+
+
+def create_user(
+    username: str, password: str, email: str, first_name: str, last_name: str
+) -> _User:
+    user = _User.objects.create_user(
+        username=username,
+        password=password,
+        email=email,
+        first_name=first_name,
+        last_name=last_name,
+    )
+
+    return user
