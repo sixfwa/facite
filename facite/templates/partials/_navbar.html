@@ -18,6 +18,9 @@
                 </form>
             </li>
             {% else %}  
+            <li class="nav-item {% active_link 'login' 'active' %}">
+                <a href="{% url 'login' %}" class="nav-link">Login</a>
+            </li>
             <li class="nav-item {% active_link 'create-account' 'active' %}">
                 <a href="{% url 'create-account' %}" class="nav-link">Create an Account</a>
             </li>
