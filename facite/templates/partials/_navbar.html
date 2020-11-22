@@ -8,6 +8,9 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
+            <li class="nav-item {% active_link 'create-list' 'active' %}">
+                <a href="{% url 'create-list' %}" class="nav-link">Create List</a>
+            </li>
             <li class="nav-item">
                 <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
                 Logout

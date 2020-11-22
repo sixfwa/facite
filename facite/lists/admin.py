@@ -4,7 +4,7 @@ from .models import List as _List
 
 
 class ListAdmin(_admin.ModelAdmin):
-    list_display = ("name", "user", "is_completed")
+    list_display = ("id", "name", "user", "is_completed")
 
 
 _admin.site.register(_List, ListAdmin)

@@ -1,10 +1,8 @@
 from django.urls import path as _path
 
-from .api import views as _views
+from . import views as _views
 
 urlpatterns = [
-    _path("lists/", _views.ListAPIView.as_view(), name="lists"),
-    _path(
-        "lists/<int:list_id>/", _views.ListDetailAPIView.as_view(), name="list-detail"
-    ),
+    _path("create-list/", _views.create_list, name="create-list"),
+    _path("<int:list_id>/add-item/", _views.add_item, name="add-item"),
 ]

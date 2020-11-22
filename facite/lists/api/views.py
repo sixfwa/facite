@@ -57,9 +57,15 @@ class ListDetailAPIView(_APIView):
     def get(self, request, list_id):
         user = request.user
         list_obj = _get_object_or_404(self.model, pk=list_id)
-        if list_obj.user != user:
-            return _response.Response(status=_status.HTTP_404_NOT_FOUND)
 
         serializer = _ListSerializer(list_obj)
 
         return _response.Response(data=serializer.data)
+
+    def delete(self, request, list_id):
+        user = request.user
+        list_obj = _get_object_or_404(self.model, pk=list_id)
+
+        list_obj.delete()
+
+        return _response.Response(status=_status.HTTP_204_NO_CONTENT)

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-8 mb-0">
+                            <input class="form-control" id="list-title" placeholder="List Title" required/>
+                        </div>
+                        <div class="form-group col-md-4 mb-0">
+                            <button type="submit" id="submit-list-title" class="btn btn-success btn-block"><i class="fas fa-plus-square mr-2"></i>Create List</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("form").on("submit", function(e) {
+            e.preventDefault()
+            var data = {}
+            data.name = $("#list-title").val()
+            $.ajax({
+                type: "POST",
+                url: "/api/lists/",
+                data: data,
+                beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                },
+                success: function (arg) {
+                    console.log(arg)
+                }
+            })
+        })
+    })
+</script>
+{% endblock %}
